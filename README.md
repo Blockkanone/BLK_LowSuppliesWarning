@@ -3,7 +3,7 @@
 ## Header
 - Name: Low Supplies Warning
 - ModCode: LSW
-- Plugin: `BLK_LowSuppliesWarning.esp` (ESL-flagged: yes)
+- Plugin: `BLK_LowSuppliesWarning.esp` (ESL-flagged: planned, not flagged yet)
 - Type: Feature
 - Status: In development
 - Current version: none yet (target 1.0.0)
@@ -56,9 +56,9 @@ on ammo equipped:
 ### Milestones
 | # | Milestone | Status |
 |---|---|---|
-| M0 | Tool setup | in progress |
-| M1 | Quest starts, logs a line | |
-| M2 | Lockpick warning via player alias | |
+| M0 | Tool setup | done (xEdit still to install before release) |
+| M1 | Quest starts, logs a line | done |
+| M2 | Lockpick warning via player alias | next |
 | M3 | Warn once + reset, GlobalVariable thresholds | |
 | M4 | Equipped ammo tracking | |
 | M5 | Load-game maintenance + version | |
@@ -73,14 +73,14 @@ on ammo equipped:
 ## Records Registry
 | EditorID | Record type | Purpose | Notes |
 |---|---|---|---|
-| BLK_LSW_MainQuest | Quest | Hosts scripts and player alias | Start Game Enabled (planned) |
+| BLK_LSW_MainQuest | Quest | Hosts scripts and player alias | Created. Start Game Enabled. Name "Low Supplies Warning" |
 | BLK_LSW_ArrowThreshold | GlobalVariable | Arrow threshold | Default 20 (planned) |
 | BLK_LSW_LockpickThreshold | GlobalVariable | Lockpick threshold | Default 10 (planned) |
 
 ## Scripts Registry
 | Script | Extends | Attached to | Purpose | Key properties |
 |---|---|---|---|---|
-| BLK_LSW_MainQuestScript | Quest | BLK_LSW_MainQuest | Maintenance, version | (planned) |
+| BLK_LSW_MainQuestScript | Quest | BLK_LSW_MainQuest | Currently: OnInit test (trace + notification). Later: maintenance, version | none yet |
 | BLK_LSW_PlayerAliasScript | ReferenceAlias | Player alias | Inventory and equip events | (planned) |
 
 ## Save-Game Notes
@@ -89,7 +89,8 @@ on ammo equipped:
 - Uninstall safety: TBD
 
 ## Known Issues / TODO
--
+- Install SSEEdit, then ESL-flag the plugin and check the header version before release.
+- Remove or replace the OnInit test notification before release.
 
 ## Decision Log
 | Date | Decision | Reason |
@@ -97,6 +98,8 @@ on ammo equipped:
 | 2026-10-04 | Name "Low Supplies Warning", code LSW, plugin BLK_LowSuppliesWarning.esp | Descriptive, unique code |
 | 2026-10-04 | 1.0 scope: lockpicks + equipped arrows, defaults 20 arrows / 10 lockpicks | Keep first mod small |
 | 2026-10-04 | No separate SKSE-free Stock Game copy; test vanilla via profile/launcher instead | Installing SKSE does not create a dependency |
+| 2026-10-05 | Compile via VS Code build task (tasks.json) instead of extension project files | Transparent, output goes straight into the mod folder |
+| 2026-10-05 | Git repo lives inside the MO2 mod folder; .vscode ignored | Git tracks exactly what MO2 loads; tasks.json holds machine-specific paths |
 
 ## Changelog
 | Version | Date | Save safety | Changes |
