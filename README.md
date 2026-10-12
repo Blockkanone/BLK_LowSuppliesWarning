@@ -2,9 +2,9 @@
 
 A small Skyrim Special Edition mod: the game tells you when your equipped arrows or your lockpicks run low, once, before you're caught empty-handed in a fight or in front of a locked chest.
 
-> **Status:** In development. No release yet (target: 1.0.0).
+> **Status:** Released (v1.0.0)
 
-## Features (planned for 1.0)
+## Features
 - Warns you when your **lockpicks** drop to or below a threshold.
 - Warns you when your **equipped arrows** drop to or below a threshold.
 - Each warning appears **once**. It resets when you restock above the threshold.
@@ -21,33 +21,40 @@ A small Skyrim Special Edition mod: the game tells you when your equipped arrows
 No Anniversary Edition content is required.
 
 ## Installation
-Will be added with the first release. Installation with a mod manager (Mod Organizer 2 or Vortex) will be recommended.
+Install with the “Mod Manager Download” button (Vortex or Mod Organizer 2).
+For manual installation, extract the archive into your Skyrim Special Edition\Data folder.
+
+Installing on an existing save? Re-equip your arrows once so the mod picks them up.
 
 ## Compatibility
-Low Supplies Warning only adds new records and does not change any vanilla records, so it is expected to be compatible with almost everything. Detailed compatibility notes will follow with the first release.
+Low Supplies Warning only adds new records and does not change any vanilla records, so it is compatible with almost everything.
+Works on Skyrim SE/AE 1.6.1130 and newer. Older versions (including 1.5.97) need Backported Extended ESL Support.
 
 ## Uninstalling
-Uninstall safety will be documented with the first release.
+Removing the mod mid-playthrough is at your own risk. It leaves small orphaned script data in your save. This is unlikely to cause problems, but it can’t be ruled out. If you want a clean save, remove the leftovers with ReSaver.
 
 ## Roadmap
 | Milestone | Status |
 |---|---|
 | Basic mod framework | done |
-| Lockpick warning | in progress |
-| Warn once and reset, adjustable thresholds | planned |
-| Equipped arrow tracking | planned |
-| Update safety for existing saves | planned |
-| MCM menu (optional) | planned |
+| Lockpick warning | done |
+| Warn once and reset, adjustable thresholds | done |
+| Equipped arrow tracking | done |
+| Update safety for existing saves | done |
+| MCM menu (optional) | done |
 
 ## Ideas for later versions
-No promises, but possible additions after 1.0:
+No promises, but possible additions:
 - Potions (health, magicka, stamina)
 - Torches
-- Repair items and smithing materials
 - A sound effect with the warning
 
 ## Changelog
-No releases yet.
+### 1.0.0 (2026-10-13)
+Initial release.
+
+## License
+CC BY-NC 4.0, see LICENSE.txt. Translations, ports and patches are welcome without asking, as long as you credit the original.
 
 ## Author
 BLK
