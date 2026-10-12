@@ -8,7 +8,7 @@
       "args": [
         "${workspaceFolder}\\Source\\Scripts",
         "-all",
-        "-i=${workspaceFolder}\\Source\\Scripts;C:\\Modding\\MO2\\Skyrim Stock Game\\Skyrim Special Edition\\Data\\Source\\Scripts",
+        "-i=${workspaceFolder}\\Source\\Scripts;C:\\Modding\\MO2\\MO2_Dev\\mods\\SkyUI SDK\\Scripts\\Source;C:\\Modding\\MO2\\Skyrim Stock Game\\Skyrim Special Edition\\Data\\Source\\Scripts",
         "-o=${workspaceFolder}\\Scripts",
         "-f=TESV_Papyrus_Flags.flg"
       ],

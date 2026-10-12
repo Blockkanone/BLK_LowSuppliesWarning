@@ -13,6 +13,10 @@ Int Property CURRENT_VERSION = 10000 AutoReadOnly
 String Property VERSION_STRING = "1.0.0" AutoReadOnly
 Int iInstalledVersion = 0
 
+GlobalVariable Property BLK_LSW_LockpickEnabled Auto
+GlobalVariable Property BLK_LSW_ArrowEnabled Auto
+
+
 Event OnInit()
     Maintenance()
 EndEvent
@@ -50,7 +54,7 @@ Event OnObjectEquipped(Form akBaseObject, ObjectReference akReference)
     Int iCount = GetReference().GetItemCount(kTrackedAmmo)
     Int iThreshold = BLK_LSW_ArrowThreshold.GetValueInt()
 
-    If (iCount <= iThreshold && !bArrowWarned)
+    If (iCount <= iThreshold && !bArrowWarned && BLK_LSW_ArrowEnabled.GetValueInt() == 1)
             Debug.Trace("[BLK_LSW] Arrows left: " + iCount)
             Debug.Notification("You're running low on arrows")
             bArrowWarned = true
@@ -58,7 +62,7 @@ Event OnObjectEquipped(Form akBaseObject, ObjectReference akReference)
 EndEvent
     
 Event OnItemRemoved(Form akBaseItem, Int aiItemCount, ObjectReference akItemReference, ObjectReference akDestContainer)
-    If akBaseItem== Lockpick
+    If akBaseItem == Lockpick && BLK_LSW_LockpickEnabled.GetValueInt() == 1
         Int iCount = GetReference().GetItemCount(Lockpick)
         Int iThreshold = BLK_LSW_LockpickThreshold.GetValueInt()
         
@@ -68,7 +72,7 @@ Event OnItemRemoved(Form akBaseItem, Int aiItemCount, ObjectReference akItemRefe
             bLockpickWarned = true
         EndIf
            
-    ElseIf akBaseItem == kTrackedAmmo
+    ElseIf akBaseItem == kTrackedAmmo && BLK_LSW_ArrowEnabled.GetValueInt() == 1
         Int iCount = GetReference().GetItemCount(kTrackedAmmo)
         Int iThreshold = BLK_LSW_ArrowThreshold.GetValueInt()
 
