@@ -5,6 +5,7 @@ GlobalVariable Property BLK_LSW_ArrowEnabled Auto
 GlobalVariable Property BLK_LSW_ArrowThreshold Auto
 GlobalVariable Property BLK_LSW_LockpickThreshold Auto
 GlobalVariable Property BLK_LSW_FPPerspectiveEnabled Auto
+GlobalVariable Property BLK_LSW_FPAutoChecked Auto
 
 Int iOptLockpickEnabled
 Int iOptLockpickThreshold
@@ -36,6 +37,7 @@ Event OnOptionSelect(Int option)
         BLK_LSW_ArrowEnabled.SetValue(bNew as Int)
         SetToggleOptionValue(option, bNew)
     ElseIf option == iOptFPPerspectiveEnabled
+        BLK_LSW_FPAutoChecked.SetValue(1)
         Bool bNew = BLK_LSW_FPPerspectiveEnabled.GetValueInt() == 0
         BLK_LSW_FPPerspectiveEnabled.SetValue(bNew as Int)
         SetToggleOptionValue(option, bNew)

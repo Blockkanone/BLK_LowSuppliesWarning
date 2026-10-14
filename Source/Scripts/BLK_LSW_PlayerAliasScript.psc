@@ -16,6 +16,7 @@ Int iInstalledVersion = 0
 GlobalVariable Property BLK_LSW_LockpickEnabled Auto
 GlobalVariable Property BLK_LSW_ArrowEnabled Auto
 GlobalVariable Property BLK_LSW_FPPerspectiveEnabled Auto
+GlobalVariable Property BLK_LSW_FPAutoChecked Auto
 
 String Property ArrowThirdPersonMessage = "You're running low on arrows" AutoReadOnly
 String Property ArrowFirstPersonMessage = "I'm running low on arrows" AutoReadOnly
@@ -58,6 +59,7 @@ Event OnObjectEquipped(Form akBaseObject, ObjectReference akReference)
     If kNewAmmo == None
        return
     EndIf
+    CheckSurvivalAuto()
     If kTrackedAmmo != None
         RemoveInventoryEventFilter(kTrackedAmmo)
     EndIf
@@ -75,6 +77,7 @@ Event OnObjectEquipped(Form akBaseObject, ObjectReference akReference)
 EndEvent
     
 Event OnItemRemoved(Form akBaseItem, Int aiItemCount, ObjectReference akItemReference, ObjectReference akDestContainer)
+    CheckSurvivalAuto()
     If BLK_LSW_FPPerspectiveEnabled.GetValueInt() == 1
         MessageArrow = ArrowFirstPersonMessage
     ElseIf BLK_LSW_FPPerspectiveEnabled.GetValueInt() == 0
@@ -126,3 +129,14 @@ Event OnItemAdded(Form akBaseItem, Int aiItemCount, ObjectReference akItemRefere
         EndIf
     EndIf
 EndEvent
+
+Function CheckSurvivalAuto()
+    If BLK_LSW_FPAutoChecked.GetValueInt() == 1
+        return
+    EndIf
+    GlobalVariable kSurvivalToggle = Game.GetFormFromFile(0x828, "ccQDRSSE001-SurvivalMode.esl") as GlobalVariable
+    If kSurvivalToggle != None && kSurvivalToggle.GetValueInt() == 1
+        BLK_LSW_FPAutoChecked.SetValue(1)
+        BLK_LSW_FPPerspectiveEnabled.SetValue(1)
+    EndIF
+EndFunction
