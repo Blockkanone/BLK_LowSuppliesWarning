@@ -33,16 +33,6 @@ Works on Skyrim SE/AE 1.6.1130 and newer. Older versions (including 1.5.97) need
 ## Uninstalling
 Removing the mod mid-playthrough is at your own risk. It leaves small orphaned script data in your save. This is unlikely to cause problems, but it can’t be ruled out. If you want a clean save, remove the leftovers with ReSaver.
 
-## Roadmap
-| Milestone | Status |
-|---|---|
-| Basic mod framework | done |
-| Lockpick warning | done |
-| Warn once and reset, adjustable thresholds | done |
-| Equipped arrow tracking | done |
-| Update safety for existing saves | done |
-| MCM menu (optional) | done |
-
 ## Ideas for later versions
 No promises, but possible additions:
 - Potions (health, magicka, stamina)
@@ -52,6 +42,17 @@ No promises, but possible additions:
 ## Changelog
 ### 1.0.0 (2026-10-13)
 Initial release.
+
+### 1.0.1 (2026-10-14)
+**Save safety:** Safe to update mid-game.
+
+**Added**
+- First-person option for the warning messages ("I'm running low on arrows"), toggleable in the MCM.
+- The first-person option turns on automatically the first time Survival Mode is enabled, unless you've already changed the setting yourself.
+
+**Changed**
+- Removed the debug startup message.
+- The download archive no longer includes `README.md` and `LICENSE.txt`. The license still applies; both files remain available on GitHub.
 
 ## License
 CC BY-NC 4.0, see LICENSE.txt. Translations, ports and patches are welcome without asking, as long as you credit the original.
