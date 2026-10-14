@@ -9,13 +9,21 @@ Ammo kTrackedAmmo
 Bool bArrowWarned = false
 GlobalVariable Property BLK_LSW_ArrowThreshold Auto
 
-Int Property CURRENT_VERSION = 10000 AutoReadOnly
-String Property VERSION_STRING = "1.0.0" AutoReadOnly
+Int Property CURRENT_VERSION = 10001 AutoReadOnly
+String Property VERSION_STRING = "1.0.1" AutoReadOnly
 Int iInstalledVersion = 0
 
 GlobalVariable Property BLK_LSW_LockpickEnabled Auto
 GlobalVariable Property BLK_LSW_ArrowEnabled Auto
+GlobalVariable Property BLK_LSW_FPPerspectiveEnabled Auto
 
+String Property ArrowThirdPersonMessage = "You're running low on arrows" AutoReadOnly
+String Property ArrowFirstPersonMessage = "I'm running low on arrows" AutoReadOnly
+String Property LockpickThirdPersonMessage = "You're running low on lockpicks" AutoReadOnly
+String Property LockpickFirstPersonMessage = "I'm running low on lockpicks" AutoReadOnly
+
+String MessageArrow
+String MessageLockpick
 
 Event OnInit()
     Maintenance()
@@ -41,6 +49,11 @@ function Maintenance()
 Endfunction
 
 Event OnObjectEquipped(Form akBaseObject, ObjectReference akReference)
+    If BLK_LSW_FPPerspectiveEnabled.GetValueInt() == 1
+        MessageArrow = ArrowFirstPersonMessage
+    ElseIf BLK_LSW_FPPerspectiveEnabled.GetValueInt() == 0
+        MessageArrow = ArrowThirdPersonMessage
+    EndIf
     Ammo kNewAmmo = akBaseObject as Ammo
     If kNewAmmo == None
        return
@@ -56,19 +69,29 @@ Event OnObjectEquipped(Form akBaseObject, ObjectReference akReference)
 
     If (iCount <= iThreshold && !bArrowWarned && BLK_LSW_ArrowEnabled.GetValueInt() == 1)
             Debug.Trace("[BLK_LSW] Arrows left: " + iCount)
-            Debug.Notification("You're running low on arrows")
+            Debug.Notification(MessageArrow)
             bArrowWarned = true
     EndIf
 EndEvent
     
 Event OnItemRemoved(Form akBaseItem, Int aiItemCount, ObjectReference akItemReference, ObjectReference akDestContainer)
+    If BLK_LSW_FPPerspectiveEnabled.GetValueInt() == 1
+        MessageArrow = ArrowFirstPersonMessage
+    ElseIf BLK_LSW_FPPerspectiveEnabled.GetValueInt() == 0
+        MessageArrow = ArrowThirdPersonMessage
+    EndIf
+    If BLK_LSW_FPPerspectiveEnabled.GetValueInt() == 1
+        MessageLockpick = LockpickFirstPersonMessage
+    ElseIf BLK_LSW_FPPerspectiveEnabled.GetValueInt() == 0
+        MessageLockpick = LockpickThirdPersonMessage
+    EndIf
     If akBaseItem == Lockpick && BLK_LSW_LockpickEnabled.GetValueInt() == 1
         Int iCount = GetReference().GetItemCount(Lockpick)
         Int iThreshold = BLK_LSW_LockpickThreshold.GetValueInt()
         
         If (iCount <= iThreshold && !bLockpickWarned)
             Debug.Trace("[BLK_LSW] Lockpicks left: " + iCount)
-            Debug.Notification("You're running low on lockpicks")
+            Debug.Notification(MessageLockpick)
             bLockpickWarned = true
         EndIf
            
@@ -78,14 +101,14 @@ Event OnItemRemoved(Form akBaseItem, Int aiItemCount, ObjectReference akItemRefe
 
         If (iCount <= iThreshold && !bArrowWarned)
             Debug.Trace("[BLK_LSW] Arrows left: " + iCount)
-            Debug.Notification("You're running low on arrows")
+            Debug.Notification(MessageArrow)
             bArrowWarned = true
         EndIf
     EndIf
 EndEvent
 
 Event OnItemAdded(Form akBaseItem, Int aiItemCount, ObjectReference akItemReference, ObjectReference akSourceContainer)
-    if akBaseItem == Lockpick
+    If akBaseItem == Lockpick
         Int iCount = GetReference().GetItemCount(Lockpick)
         Int iThreshold = BLK_LSW_LockpickThreshold.GetValueInt()
         

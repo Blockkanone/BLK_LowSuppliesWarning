@@ -4,11 +4,13 @@ GlobalVariable Property BLK_LSW_LockpickEnabled Auto
 GlobalVariable Property BLK_LSW_ArrowEnabled Auto
 GlobalVariable Property BLK_LSW_ArrowThreshold Auto
 GlobalVariable Property BLK_LSW_LockpickThreshold Auto
+GlobalVariable Property BLK_LSW_FPPerspectiveEnabled Auto
 
 Int iOptLockpickEnabled
 Int iOptLockpickThreshold
 Int iOptArrowEnabled
 Int iOptArrowThreshold
+Int iOptFPPerspectiveEnabled
 
 Event OnPageReset(String page)
     If page == "" || page == "Settings"
@@ -19,6 +21,8 @@ Event OnPageReset(String page)
         AddHeaderOption("Arrows")
         iOptArrowEnabled = AddToggleOption("Arrow warning", BLK_LSW_ArrowEnabled.GetValueInt() == 1)
         iOptArrowThreshold = AddSliderOption("Warn at", BLK_LSW_ArrowThreshold.GetValue(), "{0}")
+        AddHeaderOption("Perspective")
+        iOptFPPerspectiveEnabled = AddToggleOption("First Person Perspective", BLK_LSW_FPPerspectiveEnabled.GetValueInt() == 1)
     EndIf
 EndEvent
 
@@ -30,6 +34,10 @@ Event OnOptionSelect(Int option)
     ElseIf option == iOptArrowEnabled
         Bool bNew = BLK_LSW_ArrowEnabled.GetValueInt() == 0
         BLK_LSW_ArrowEnabled.SetValue(bNew as Int)
+        SetToggleOptionValue(option, bNew)
+    ElseIf option == iOptFPPerspectiveEnabled
+        Bool bNew = BLK_LSW_FPPerspectiveEnabled.GetValueInt() == 0
+        BLK_LSW_FPPerspectiveEnabled.SetValue(bNew as Int)
         SetToggleOptionValue(option, bNew)
     EndIf
 EndEvent
@@ -68,11 +76,13 @@ Event OnOptionHighlight(Int option)
         SetInfoText("Enable/Disable the warning when your arrows are running low.")
     ElseIf option == iOptArrowThreshold
         SetInfoText("Set the number of arrows at which to show the warning.")
+    ElseIf option == iOptFPPerspectiveEnabled
+        SetInfoText("Enable/Disable the first person perspective for the warning messages.")
     EndIf
 EndEvent
 
 Int Function GetVersion()
-    return 1
+    return 10001
 EndFunction
 
 Event OnConfigInit()
