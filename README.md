@@ -10,6 +10,7 @@ A small Skyrim Special Edition mod: the game tells you when your equipped arrows
 - Each warning appears **once**. It resets when you restock above the threshold.
 - Default thresholds: **20 arrows**, **10 lockpicks**.
 - Optional MCM menu to change the thresholds and turn each warning on or off. The mod works without it.
+- Optional first person messages via MCM or when playing survival mode.
 
 ## Requirements
 | Requirement | Needed for |
