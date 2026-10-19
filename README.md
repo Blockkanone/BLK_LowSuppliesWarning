@@ -2,7 +2,7 @@
 
 A small Skyrim Special Edition mod: the game tells you when your equipped arrows or your lockpicks run low, once, before you're caught empty-handed in a fight or in front of a locked chest.
 
-> **Status:** Released (v1.0.0)
+> **Status:** Released (v1.0.1)
 
 ## Features
 - Warns you when your **lockpicks** drop to or below a threshold.
@@ -10,6 +10,7 @@ A small Skyrim Special Edition mod: the game tells you when your equipped arrows
 - Each warning appears **once**. It resets when you restock above the threshold.
 - Default thresholds: **20 arrows**, **10 lockpicks**.
 - Optional MCM menu to change the thresholds and turn each warning on or off. The mod works without it.
+- Optional first person messages via MCM or when playing survival mode.
 
 ## Requirements
 | Requirement | Needed for |
@@ -33,16 +34,6 @@ Works on Skyrim SE/AE 1.6.1130 and newer. Older versions (including 1.5.97) need
 ## Uninstalling
 Removing the mod mid-playthrough is at your own risk. It leaves small orphaned script data in your save. This is unlikely to cause problems, but it can’t be ruled out. If you want a clean save, remove the leftovers with ReSaver.
 
-## Roadmap
-| Milestone | Status |
-|---|---|
-| Basic mod framework | done |
-| Lockpick warning | done |
-| Warn once and reset, adjustable thresholds | done |
-| Equipped arrow tracking | done |
-| Update safety for existing saves | done |
-| MCM menu (optional) | done |
-
 ## Ideas for later versions
 No promises, but possible additions:
 - Potions (health, magicka, stamina)
@@ -52,6 +43,17 @@ No promises, but possible additions:
 ## Changelog
 ### 1.0.0 (2026-10-13)
 Initial release.
+
+### 1.0.1 (2026-10-14)
+**Save safety:** Safe to update mid-game.
+
+**Added**
+- First-person option for the warning messages ("I'm running low on arrows"), toggleable in the MCM.
+- The first-person option turns on automatically the first time Survival Mode is enabled, unless you've already changed the setting yourself.
+
+**Changed**
+- Removed the debug startup message.
+- The download archive no longer includes `README.md` and `LICENSE.txt`. The license still applies; both files remain available on GitHub.
 
 ## License
 CC BY-NC 4.0, see LICENSE.txt. Translations, ports and patches are welcome without asking, as long as you credit the original.
