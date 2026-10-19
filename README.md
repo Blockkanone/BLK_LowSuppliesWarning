@@ -55,6 +55,13 @@ Initial release.
 - Removed the debug startup message.
 - The download archive no longer includes `README.md` and `LICENSE.txt`. The license still applies; both files remain available on GitHub.
 
+### 1.0.2 (2026-10-19)
+**Save safety:** Safe to update mid-game. Updating from 1.0.1 resets the first-person setting once.
+
+**Fixed**
+- Two records added in 1.0.1 were outside the valid FormID range for ESL plugins (reported by LOOT). Thanks to the user who reported it!
+- Internal FormID cleanup (no gameplay change).
+
 ## License
 CC BY-NC 4.0, see LICENSE.txt. Translations, ports and patches are welcome without asking, as long as you credit the original.
 
