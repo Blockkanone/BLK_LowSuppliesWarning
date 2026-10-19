@@ -84,10 +84,17 @@ Event OnOptionHighlight(Int option)
 EndEvent
 
 Int Function GetVersion()
-    return 10001
+    return 10002
 EndFunction
 
 Event OnConfigInit()
     Pages = new String[1]
     Pages[0] = "Settings"
+EndEvent
+
+Event OnVersionUpdate(Int a_version)
+    If a_version >= 10002
+        BLK_LSW_FPPerspectiveEnabled = Game.GetFormFromFile(0x006, "BLK_LowSuppliesWarning.esp") as GlobalVariable
+        BLK_LSW_FPAutoChecked = Game.GetFormFromFile(0x007, "BLK_LowSuppliesWarning.esp") as GlobalVariable
+    EndIf
 EndEvent

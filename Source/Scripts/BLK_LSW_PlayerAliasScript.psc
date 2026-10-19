@@ -9,8 +9,8 @@ Ammo kTrackedAmmo
 Bool bArrowWarned = false
 GlobalVariable Property BLK_LSW_ArrowThreshold Auto
 
-Int Property CURRENT_VERSION = 10001 AutoReadOnly
-String Property VERSION_STRING = "1.0.1" AutoReadOnly
+Int Property CURRENT_VERSION = 10002 AutoReadOnly
+String Property VERSION_STRING = "1.0.2" AutoReadOnly
 Int iInstalledVersion = 0
 
 GlobalVariable Property BLK_LSW_LockpickEnabled Auto
@@ -42,9 +42,13 @@ function Maintenance()
     EndIf
     If (iInstalledVersion < CURRENT_VERSION)
         Debug.Trace("[BLK_LSW] Version mismatch. Installed: " + iInstalledVersion + ", Current: " + CURRENT_VERSION)
-        If(iInstalledVersion > 0)
+        If (iInstalledVersion > 0)
             Debug.Notification("Low Supplies Warning has been updated to version " + VERSION_STRING)
         EndIf
+    If (iInstalledVersion < 10002)
+        BLK_LSW_FPPerspectiveEnabled = Game.GetFormFromFile(0x006, "BLK_LowSuppliesWarning.esp") as GlobalVariable
+        BLK_LSW_FPAutoChecked = Game.GetFormFromFile(0x007, "BLK_LowSuppliesWarning.esp") as GlobalVariable
+    EndIf
         iInstalledVersion = CURRENT_VERSION
     EndIf
 Endfunction
