@@ -2,8 +2,6 @@
 
 A small Skyrim Special Edition mod: the game tells you when your equipped arrows or your lockpicks run low, once, before you're caught empty-handed in a fight or in front of a locked chest.
 
-> **Status:** Released (v1.0.1)
-
 ## Features
 - Warns you when your **lockpicks** drop to or below a threshold.
 - Warns you when your **equipped arrows** drop to or below a threshold.
